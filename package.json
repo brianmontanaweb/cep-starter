@@ -9,9 +9,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dist-path": "node ./scripts/dist-path.js"
   },
   "private": true,
+  "config": {
+    "distPath": " ~/Library/Application Support/Adobe/CEP/extensions"
+  },
   "dependencies": {
     "@angular/animations": "^6.0.3",
     "@angular/common": "^6.0.3",
