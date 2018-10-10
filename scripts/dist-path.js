@@ -1,20 +1,27 @@
 const fs = require('fs');
+const path = require('path');
 const exec = require('child_process').exec;
+
+let distArray = [process.env.HOME, 'Library', 'Application Support', 'Adobe', 'CEP', 'extensions/'];
+let distPath;
 // Check platform
 // Determine how to build the path for dist, based on a generic ignored file
-if(process.platform === 'win32') {
-  process.env.npm_package_config_distPath = process.env.APPDATA + '\\Adobe\\CEP\\extensions\\com.cep-starter';
+if (process.platform === 'win32') {
+  distArray = [process.env.APPDATA, 'Adobe', 'CEP', 'extensions\\'];
+  distPath = path.win32.join(...distArray);
+} else {
+  distPath = path.join(...distArray);
 }
 
-if(!fs.existsSync(process.env.npm_package_config_distPath)) {
-  console.error(`Directory doesn\'t exist! Can\'t write to ${process.env.npm_package_config_distPath}`);
-}
-
-exec(`ng build --output-path ${process.env.npm_package_config_distPath}`,
-  function(err, stdout, stderr) {
-    if (err) {
-      throw err;
-    } else {
+if (fs.readdirSync(distPath)) {
+  if (process.platform !== 'win32') {
+    distPath = distPath.replace(' ', '\\ ')
+  }
+  exec(`ng build --output-path ${distPath}com.cep-starter`,
+    function (execErr, stdout, stderr) {
+      if (execErr) throw execErr;
       console.log(stdout);
-    }
-  });
+    });
+} else {
+  console.error(`Couldn't write to directory, it doesn't exist`);
+}

@@ -13,9 +13,6 @@
     "dist-path": "node ./scripts/dist-path.js"
   },
   "private": true,
-  "config": {
-    "distPath": "~/Library/Application\\ Support/Adobe/CEP/extensions/com.cep-starter"
-  },
   "dependencies": {
     "@angular/animations": "^6.0.3",
     "@angular/common": "^6.0.3",
