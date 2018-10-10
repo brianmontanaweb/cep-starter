@@ -14,7 +14,7 @@
   },
   "private": true,
   "config": {
-    "distPath": " ~/Library/Application Support/Adobe/CEP/extensions"
+    "distPath": "~/Library/Application\\ Support/Adobe/CEP/extensions/com.cep-starter"
   },
   "dependencies": {
     "@angular/animations": "^6.0.3",
