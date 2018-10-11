@@ -4,13 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:dev": "ng serve -c development",
-    "start:web": "ng serve -c web",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "dist-path": "node ./scripts/dist-path.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

@@ -1,1 +1,0 @@
-const dirPath = 'C:/Users/Brian/Downloads/';

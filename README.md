@@ -1,27 +1,58 @@
-# Client
+# Adobe CEP Scaffolding
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This is a basic setup for an Adobe CEP using Angular 6 CLI focused on Photoshop but can be converted for others. Filling out the rest as the project expands.
 
-## Development server
+## Goal
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Scalable template for Adobe CEP projects
+* Maintained with current stable Angular
+* SCSS and Angular component guidelines for architecting
 
-## Code scaffolding
+## Starting
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Install dependencies: `npm i`
+2. Start local server: `npm start`
 
-## Build
+## Architecture
+```
+client/                         compiled Angular app from src/
+CSXS/                           manifest for Adobe CEP extensions
+e2e/                            end-to-end tests
+host/                           jsx files for interfacing with Adobe products
+src/                            Angular source code
+|- app/                         app components
+|  |- common/                   common components used across app
+|  |- core/                     singleton services and single-use services
+|  |- app.component.*           component
+|  |- app.module.ts             module definition
+|  |- app-routing.module.ts     routes
+|- assets/                      media assets
+|- environments/                values for build environments
+|- styles/                      styles used across app
+|  |- base/                     base styles for elements
+|  |- components/               styles for common components
+|  |- settings/                 variables used in the styles
+|  |- tools/                    functions, helpers, mixins for extending SCSS
+|  |- utility/                  single style classes built from a set layout measurements
+|  |- vendor/                   libraries from third party sources
+|  |- README.md                 context related SCSS/CSS info
+|  |- styles.scss               used to import various SCSS files
+|- CSInterface.js               required for Adobe CEP
+|- README.md                    context related to the Angular app
+README.md                       context related to entire app integration
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Tasks
 
-## Running unit tests
+## Libraries
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Thank you!
 
-## Running end-to-end tests
+## License
+Copyright 2018 Brian Montana
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-## Further help
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
