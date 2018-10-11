@@ -10,8 +10,15 @@ This is a basic setup for an Adobe CEP using Angular 6 CLI focused on Photoshop 
 
 ## Starting
 
+Clone into Mac: `~/Library/Application Support/Adobe/CEP/extensions` or Windows: `C:\Users\<USERNAME>\AppData\Roaming\Adobe\CEP/extensions` to see the extension in the Adobe product
+
+### Setup Browser
 1. Install dependencies: `npm i`
 2. Start local server: `npm start`
+
+### Setup Extension
+1. Install dependencies: `npm i`
+2. Start local server: `npm run build`
 
 ## Architecture
 ```
