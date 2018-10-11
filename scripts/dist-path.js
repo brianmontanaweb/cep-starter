@@ -1,11 +1,11 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const exec = require('child_process').exec;
-
+const projectName = 'com.cep-starter';
+// The path could be a default with the
 let distArray = [process.env.HOME, 'Library', 'Application Support', 'Adobe', 'CEP', 'extensions/'];
 let distPath;
-// Check platform
-// Determine how to build the path for dist, based on a generic ignored file
+
 if (process.platform === 'win32') {
   distArray = [process.env.APPDATA, 'Adobe', 'CEP', 'extensions\\'];
   distPath = path.win32.join(...distArray);
@@ -14,13 +14,16 @@ if (process.platform === 'win32') {
 }
 
 if (fs.readdirSync(distPath)) {
-  if (process.platform !== 'win32') {
-    distPath = distPath.replace(' ', '\\ ')
-  }
-  exec(`ng build --output-path ${distPath}com.cep-starter`,
+  exec(`ng build --output-path ${distPath.replace(' ', '\\ ') + projectName}/client`,
     function (execErr, stdout, stderr) {
       if (execErr) throw execErr;
-      console.log(stdout);
+      let distPathApp = 'app';
+      fs.readdirSync(distPathApp).forEach(item => {
+        if(item !== 'client') {
+          fs.copy(path.join(distPathApp, item), path.join(distPath, projectName, item))
+            .then(() => console.log(`Successfully copied ${item}!`));
+        }
+      })
     });
 } else {
   console.error(`Couldn't write to directory, it doesn't exist`);

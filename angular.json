@@ -49,42 +49,6 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "baseHref": ""
-            },
-            "development": {
-              "fileReplacements": [
-                {
-                  "replace": "environments/environment.ts",
-                  "with": "environments/environment.dev.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "baseHref": ""
-            },
-            "web": {
-              "fileReplacements": [
-                {
-                  "replace": "environments/environment.ts",
-                  "with": "environments/environment.web.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "baseHref": ""
             }
           }
         },
@@ -96,12 +60,6 @@
           "configurations": {
             "production": {
               "browserTarget": "client:build:production"
-            },
-            "development": {
-              "browserTarget": "client:build:development"
-            },
-            "web": {
-              "browserTarget": "client:build:web"
             }
           }
         },
@@ -155,12 +113,6 @@
           "configurations": {
             "production": {
               "devServerTarget": "client:serve:production"
-            },
-            "development": {
-              "devServerTarget": "client:serve:development"
-            },
-            "web": {
-              "devServerTarget": "client:serve:web"
             }
           }
         },
