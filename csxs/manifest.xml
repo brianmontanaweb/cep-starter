@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- 1) -->
-<ExtensionManifest ExtensionBundleId="com.adobe-cep-started" ExtensionBundleVersion="1.0.0" Version="7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="cep-starter" ExtensionBundleVersion="1.0.0" Version="7.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
         <!-- 2) -->
-        <Extension Id="com.adobe-cep-started.panel" Version="1.0.0" />
+        <Extension Id="cep-starter.panel" Version="1.0.0" />
     </ExtensionList>
     <ExecutionEnvironment>
         <HostList>
@@ -15,12 +15,12 @@
             <Locale Code="All" />
         </LocaleList>
         <RequiredRuntimeList>
-            <RequiredRuntime Name="CSXS" Version="7.0" />
+            <RequiredRuntime Name="CSXS" Version="8.0" />
         </RequiredRuntimeList>
     </ExecutionEnvironment>
     <DispatchInfoList>
         <!-- 2) -->
-        <Extension Id="com.adobe-cep-started.panel">
+        <Extension Id="cep-starter">
             <DispatchInfo>
                 <Resources>
                     <!-- 4) -->
@@ -35,7 +35,7 @@
                 <UI>
                     <Type>Panel</Type>
                     <!-- 6) -->
-                    <Menu>Adobe CEP Started</Menu>
+                    <Menu>CEP Starter</Menu>
                     <Geometry>
                         <Size>
                             <!-- 7) -->
