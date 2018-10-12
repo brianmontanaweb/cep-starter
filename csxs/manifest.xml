@@ -43,8 +43,8 @@
           <Menu>CEP Starter</Menu>
           <Geometry>
             <Size>
-              <Height>500</Height>
-              <Width>250</Width>
+              <Height>750</Height>
+              <Width>500</Width>
             </Size>
           </Geometry>
           <Icons/>
