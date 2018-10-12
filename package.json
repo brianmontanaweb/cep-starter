@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:watch": "npm run build -- --watch",
+    "extendscript": "extendscriptr --script host/index.js --output host/index.jsx",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -35,6 +36,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
     "del": "^3.0.0",
+    "extendscriptr": "^1.2.1",
     "fs-extra": "^7.0.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

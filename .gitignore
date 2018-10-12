@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /client
+/host/index.jsx
 
 # dependencies
 /node_modules
