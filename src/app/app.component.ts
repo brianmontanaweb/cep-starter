@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CSInterface } from '../CSInterface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'app';
+
+  constructor() {
+    console.log(CSInterface);
+  }
 }
