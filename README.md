@@ -56,13 +56,14 @@ README.md                       context related to entire app integration
 ```
 
 ## Tasks
-`npm start` builds the web app to `http://localhost:4200`
-`npm run extendscript` compiles the `index.js` file to `index.jsx`
-`npm run build` will compile the Angular app and distribute into `client`
-`npm run build:watch` will pass the `--watch` argument for your files and automatically compile, you still need to close the extension and open it again
+* `npm start` builds the web app to `http://localhost:4200`
+* `npm run extendscript` compiles the `index.js` file to `index.jsx`
+* `npm run build` will compile the Angular app and distribute into `client`
+* `npm run build:watch` will pass the `--watch` argument for your files and automatically compile, you still need to close the extension and open it again
 
 ## Libraries
 @angular/CLI
+extendscriptr
 
 ## Thank you!
 Thanks to my wonderful team!
