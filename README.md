@@ -12,6 +12,7 @@ This is a basic setup for an Adobe CEP using Angular 6 CLI focused on Photoshop 
 
 Clone repo to:
 
+* If the directory doesn't exist create it!
 * Mac: `~/Library/Application Support/Adobe/CEP/extensions`
 * Windows: `C:\Users\<USERNAME>\AppData\Roaming\Adobe\CEP/extensions`
 
