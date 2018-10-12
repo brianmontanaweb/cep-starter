@@ -56,10 +56,15 @@ README.md                       context related to entire app integration
 ```
 
 ## Tasks
+`npm run build` will compile the Angular app and distribute into `client`
+`npm run build:watch` will pass the `--watch` argument for your files and automatically compile, you still need to close the extension and open it again
+`npm start` builds the web app to `http://localhost:4200`
 
 ## Libraries
+@angular/CLI
 
 ## Thank you!
+Thanks to my wonderful team!
 
 ## License
 Copyright 2018 Brian Montana
