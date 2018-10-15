@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CSInterface } from '../CSInterface';
+import { SystemPath } from '../CSInterface';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,9 @@ import { CSInterface } from '../CSInterface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'app';
+  title: any = 'app';
 
   constructor() {
-    console.log(CSInterface);
+    this.title = new SystemPath();
   }
 }
