@@ -1,18 +1,26 @@
 const EvalScript_ErrMessage = 'EvalScript error.';
 
 export class CSXSWindowType {
+  _PANEL: string;
+  _MODELESS: string;
+  _MODAL_DIALOG: string;
+
   constructor(
     _PANEL: string,
     _MODELESS: string,
     _MODAL_DIALOG: string
   ) {
-    _PANEL = 'Panel';
-    _MODELESS = 'Modeless';
-    _MODAL_DIALOG = 'ModalDialog';
+    this._PANEL = 'Panel';
+    this._MODELESS = 'Modeless';
+    this._MODAL_DIALOG = 'ModalDialog';
   }
 }
 
 export class Version {
+  major: string;
+  minor: string;
+  micro: string;
+  special: string;
   MAX_NUM: number;
 
   constructor(
@@ -21,39 +29,72 @@ export class Version {
     micro: string,
     special: string
   ) {
+    this.major = major;
+    this.minor = minor;
+    this.micro = micro;
+    this.special = special;
     this.MAX_NUM = 999999999;
   }
 }
 
 export class VersionBound {
+  version: string;
+  inclusive: string;
+
   constructor(
     version: string,
     inclusive: string
   ) {
-
+    this.version = version;
+    this.inclusive = inclusive;
   }
 }
 
 export class VersionRange {
+  lowerBound: string;
+  upperBound: string;
+
   constructor(
     lowerBound: string,
     upperBound: string
   ) {
-
+    this.lowerBound = lowerBound;
+    this.upperBound = upperBound;
   }
 }
 
 
 export class Runtime {
+  name: string;
+  versionRange: string;
+
   constructor(
     name: string,
     versionRange: string
   ) {
-
+    this.name = name;
+    this.versionRange = versionRange;
   }
 }
 
 export class Extension {
+  id: string;
+  name: string;
+  mainPath: string;
+  basePath: string;
+  windowType: string;
+  width: string;
+  height: string;
+  minWidth: string;
+  minHeight: string;
+  maxWidth: string;
+  maxHeight: string;
+  defaultExtensionDataXml: string;
+  specialExtensionDataXml: string;
+  requiredRuntimeList: string;
+  isAutoVisible: string;
+  isPluginExtension: string;
+
   constructor(
     id: string,
     name: string,
@@ -70,20 +111,43 @@ export class Extension {
     specialExtensionDataXml: string,
     requiredRuntimeList: string,
     isAutoVisible: string,
-    isPluginExtension
+    isPluginExtension: string
   ) {
-
+    this.id = id;
+    this.name = name;
+    this.mainPath = mainPath;
+    this.basePath = basePath;
+    this.windowType = windowType;
+    this.width = width;
+    this.height = height;
+    this.minWidth = minWidth;
+    this.minHeight = minHeight;
+    this.maxWidth = maxWidth;
+    this.maxHeight = maxHeight;
+    this.defaultExtensionDataXml = defaultExtensionDataXml;
+    this.specialExtensionDataXml = specialExtensionDataXml;
+    this.requiredRuntimeList = requiredRuntimeList;
+    this.isAutoVisible = isAutoVisible;
+    this.isPluginExtension = isPluginExtension;
   }
 }
 
 export class CSEvent {
+  type: string;
+  scope: string;
+  appId: string;
+  extensionId: string;
+
   constructor(
     type: string,
     scope: string,
     appId: string,
-    extensionId
+    extensionId: string
   ) {
-
+    this.type = type;
+    this.scope = scope;
+    this.appId = appId;
+    this.extensionId = extensionId;
   }
 }
 
