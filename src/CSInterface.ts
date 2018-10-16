@@ -63,7 +63,6 @@ export class VersionRange {
   }
 }
 
-
 export class Runtime {
   name: string;
   versionRange: string;
@@ -169,101 +168,218 @@ export class SystemPath {
   }
 }
 
+export class ColorType {
+  RGB: string;
+  GRADIENT: string;
+  NONE: string;
+
+  constructor() {
+    this.RGB = 'rgb';
+    this.GRADIENT = 'gradient';
+    this.NONE = 'none';
+  }
+}
+
+export class RGBColor {
+  red: string;
+  green: string;
+  blue: string;
+  alpha: string;
+
+  constructor(
+    red: string,
+    green: string,
+    blue: string,
+    alpha: string
+  ) {
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+    this.alpha = alpha;
+  }
+}
+
+export class Direction {
+  x: string;
+  y: string;
+
+  constructor(x: string, y: string) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+export class GradientStop {
+  offset: string;
+  rgbColor: string;
+
+  constructor(offset: string, rgbColor: string) {
+    this.offset = offset;
+    this.rgbColor = rgbColor;
+  }
+}
+
+export class GradientColor {
+  type: string;
+  direction: string;
+  numStops: string;
+  arrGradientStop: string;
+
+  constructor(
+    type: string,
+    direction: string,
+    numStops: string,
+    arrGradientStop: string
+  ) {
+    this.type = type;
+    this.direction = direction;
+    this.numStops = numStops;
+    this.arrGradientStop = arrGradientStop;
+  }
+}
+
+export class UIColor {
+  type: string;
+  antialiasLevel: string;
+  color: string;
+
+  constructor(
+    type: string,
+    antialiasLevel: string,
+    color: string
+  ) {
+    this.type = type;
+    this.antialiasLevel = antialiasLevel;
+    this.color = color;
+  }
+}
+
+export class AppSkinInfo {
+  baseFontFamily: string;
+  baseFontSize: string;
+  appBarBackgroundColor: string;
+  panelBackgroundColor: string;
+  appBarBackgroundColorSRGB: string;
+  panelBackgroundColorSRGB: string;
+  systemHighlightColor: string;
+
+  constructor(
+    baseFontFamily: string,
+    baseFontSize: string,
+    appBarBackgroundColor: string,
+    panelBackgroundColor: string,
+    appBarBackgroundColorSRGB: string,
+    panelBackgroundColorSRGB: string,
+    systemHighlightColor: string
+  ) {
+    this.baseFontFamily = baseFontFamily;
+    this.baseFontSize = baseFontSize;
+    this.appBarBackgroundColor = appBarBackgroundColor;
+    this.panelBackgroundColor = panelBackgroundColor;
+    this.appBarBackgroundColorSRGB = appBarBackgroundColorSRGB;
+    this.panelBackgroundColorSRGB = panelBackgroundColorSRGB;
+    this.systemHighlightColor = systemHighlightColor;
+  }
+}
+
+export class HostEnvironment {
+  appName: string;
+  appVersion: string;
+  appLocale: string;
+  appUILocale: string;
+  appId: string;
+  isAppOnline: string;
+  appSkinInfo: string;
+
+  constructor(
+    appName: string,
+    appVersion: string,
+    appLocale: string,
+    appUILocale: string,
+    appId: string,
+    isAppOnline: string,
+    appSkinInfo: string
+  ) {
+    this.appName = appName;
+    this.appVersion = appVersion;
+    this.appLocale = appLocale;
+    this.appUILocale = appUILocale;
+    this.appId = appId;
+    this.isAppOnline = isAppOnline;
+    this.appSkinInfo = appSkinInfo;
+  }
+}
+
+export class HostCapabilities {
+  EXTENDED_PANEL_MENU: string;
+  EXTENDED_PANEL_ICONS: string;
+  DELEGATE_APE_ENGINE: string;
+  SUPPORT_HTML_EXTENSIONS: string;
+  DISABLE_FLASH_EXTENSIONS: string;
+
+  constructor(
+    EXTENDED_PANEL_MENU: string,
+    EXTENDED_PANEL_ICONS: string,
+    DELEGATE_APE_ENGINE: string,
+    SUPPORT_HTML_EXTENSIONS: string,
+    DISABLE_FLASH_EXTENSIONS: string
+  ) {
+    this.EXTENDED_PANEL_MENU = EXTENDED_PANEL_MENU;
+    this.EXTENDED_PANEL_ICONS = EXTENDED_PANEL_ICONS;
+    this.DELEGATE_APE_ENGINE = DELEGATE_APE_ENGINE;
+    this.SUPPORT_HTML_EXTENSIONS = SUPPORT_HTML_EXTENSIONS;
+    this.DISABLE_FLASH_EXTENSIONS = DISABLE_FLASH_EXTENSIONS;
+  }
+}
+
+export class ApiVersion {
+  major: string;
+  minor: string;
+  micro: string;
+
+  constructor(
+    major: string,
+    minor: string,
+    micro: string
+  ) {
+    this.major = major;
+    this.minor = minor;
+    this.micro = micro;
+  }
+}
+
+export class MenuItemStatus {
+  menuItemLabel: string;
+  enabled: string;
+  checked: string;
+
+  constructor(
+    menuItemLabel: string,
+    enabled: string,
+    checked: string
+  ) {
+    this.menuItemLabel = menuItemLabel;
+    this.enabled = enabled;
+    this.checked = checked;
+  }
+}
+
+export class ContextMenuItemStatus {
+  menuItemID: string;
+  enabled: string;
+  checked: string;
+
+  constructor(
+    menuItemID: string,
+    enabled: string,
+    checked: string) {
+    this.menuItemID = menuItemID;
+    this.enabled = enabled;
+    this.checked = checked;
+  }
+}
+
 /*
-export class ColorType() {
-  this.RGB = 'rgb';
-  this.GRADIENT = 'gradient';
-  this.NONE = 'none';
-};
-
-
-export class RGBColor(red, green, blue, alpha) {
-  this.red = red;
-  this.green = green;
-  this.blue = blue;
-  this.alpha = alpha;
-};
-
-
-export class Direction(x, y) {
-  this.x = x;
-  this.y = y;
-};
-
-
-export class GradientStop(offset, rgbColor) {
-  this.offset = offset;
-  this.rgbColor = rgbColor;
-};
-
-
-export class GradientColor(type, direction, numStops, arrGradientStop) {
-  this.type = type;
-  this.direction = direction;
-  this.numStops = numStops;
-  this.arrGradientStop = arrGradientStop;
-};
-
-
-export class UIColor(type, antialiasLevel, color) {
-  this.type = type;
-  this.antialiasLevel = antialiasLevel;
-  this.color = color;
-};
-
-
-export class AppSkinInfo(baseFontFamily, baseFontSize, appBarBackgroundColor, panelBackgroundColor, appBarBackgroundColorSRGB, panelBackgroundColorSRGB, systemHighlightColor) {
-  this.baseFontFamily = baseFontFamily;
-  this.baseFontSize = baseFontSize;
-  this.appBarBackgroundColor = appBarBackgroundColor;
-  this.panelBackgroundColor = panelBackgroundColor;
-  this.appBarBackgroundColorSRGB = appBarBackgroundColorSRGB;
-  this.panelBackgroundColorSRGB = panelBackgroundColorSRGB;
-  this.systemHighlightColor = systemHighlightColor;
-};
-
-
-export class HostEnvironment(appName, appVersion, appLocale, appUILocale, appId, isAppOnline, appSkinInfo) {
-  this.appName = appName;
-  this.appVersion = appVersion;
-  this.appLocale = appLocale;
-  this.appUILocale = appUILocale;
-  this.appId = appId;
-  this.isAppOnline = isAppOnline;
-  this.appSkinInfo = appSkinInfo;
-};
-
-
-export class HostCapabilities(EXTENDED_PANEL_MENU, EXTENDED_PANEL_ICONS, DELEGATE_APE_ENGINE, SUPPORT_HTML_EXTENSIONS, DISABLE_FLASH_EXTENSIONS) {
-  this.EXTENDED_PANEL_MENU = EXTENDED_PANEL_MENU;
-  this.EXTENDED_PANEL_ICONS = EXTENDED_PANEL_ICONS;
-  this.DELEGATE_APE_ENGINE = DELEGATE_APE_ENGINE;
-  this.SUPPORT_HTML_EXTENSIONS = SUPPORT_HTML_EXTENSIONS;
-  this.DISABLE_FLASH_EXTENSIONS = DISABLE_FLASH_EXTENSIONS;
-};
-
-
-export class ApiVersion(major, minor, micro) {
-  this.major = major;
-  this.minor = minor;
-  this.micro = micro;
-};
-
-
-export class MenuItemStatus(menuItemLabel, enabled, checked) {
-  this.menuItemLabel = menuItemLabel;
-  this.enabled = enabled;
-  this.checked = checked;
-};
-
-
-export class ContextMenuItemStatus(menuItemID, enabled, checked) {
-  this.menuItemID = menuItemID;
-  this.enabled = enabled;
-  this.checked = checked;
-};
-
-
 export class CSInterface(appWin) {
   const cep = {};
   let ret = false;
