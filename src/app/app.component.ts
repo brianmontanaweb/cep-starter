@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SystemPath } from '../CSInterface';
+import * as CSI from '../CSInterface';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +8,14 @@ import { SystemPath } from '../CSInterface';
 })
 export class AppComponent {
   title: any = 'app';
+  csi: any;
 
   constructor() {
-    this.title = new SystemPath();
+    this.csi = new CSI.CSInterface();
+    this.title = this.csi.hostEnvironment.appName;
+  }
+
+  openDoc() {
+    this.csi.evalScript('openDocument()');
   }
 }

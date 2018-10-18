@@ -1,3 +1,7 @@
+declare var ret: any;
+declare var cep: any;
+declare var window: any;
+
 const EvalScript_ErrMessage = 'EvalScript error.';
 
 export class CSXSWindowType {
@@ -380,36 +384,24 @@ export class ContextMenuItemStatus {
 }
 
 export class CSInterface {
-  appWin: any;
-  cep: any;
-  ret: boolean;
   THEME_COLOR_CHANGED_EVENT: string = 'com.adobe.csxs.events.ThemeColorChanged';
   hostEnvironment: any;
 
-  constructor(
-    appWin: any,
-    cep: any,
-    ret: boolean
-  ) {
-    this.appWin = appWin;
-    this.ret = ret;
-    this.cep = cep;
-    this.hostEnvironment = this.appWin ? JSON.parse(this.appWin.getHostEnvironment()) : null;
+  constructor() {
+    this.hostEnvironment = window.__adobe_cep__.getHostEnvironment ? JSON.parse(window.__adobe_cep__.getHostEnvironment()) : null;
   }
 
-
-
   getHostEnvironment = () => {
-    this.hostEnvironment = JSON.parse(this.appWin.getHostEnvironment());
+    this.hostEnvironment = JSON.parse(window.__adobe_cep__.getHostEnvironment());
     return this.hostEnvironment;
   };
 
   closeExtension = () => {
-    this.appWin.closeExtension();
+    window.__adobe_cep__.closeExtension();
   };
 
   getSystemPath = pathType => {
-    let path = decodeURI(this.appWin.getSystemPath(pathType));
+    let path = decodeURI(window.__adobe_cep__.getSystemPath(pathType));
     let OSVersion = this.getOSInformation();
     if (OSVersion.indexOf('Windows') >= 0) {
       path = path.replace('file:///', '');
@@ -425,45 +417,45 @@ export class CSInterface {
 
       };
     }
-    this.appWin.evalScript(script, callback);
+    window.__adobe_cep__.evalScript(script, callback);
   };
 
   getApplicationID = () => this.hostEnvironment.appId || '';
 
-  getHostCapabilities = () => JSON.parse(this.appWin.getHostCapabilities());
+  getHostCapabilities = () => JSON.parse(window.__adobe_cep__.getHostCapabilities());
 
   dispatchEvent = event => {
     if (typeof event.data == 'object') {
       event.data = JSON.stringify(event.data);
     }
 
-    this.appWin.dispatchEvent(event);
+    window.__adobe_cep__.dispatchEvent(event);
   };
 
   addEventListener = (type, listener, obj) => {
-    this.appWin.addEventListener(type, listener, obj);
+    window.__adobe_cep__.addEventListener(type, listener, obj);
   };
 
   removeEventListener = (type, listener, obj) => {
-    this.appWin.removeEventListener(type, listener, obj);
+    window.__adobe_cep__.removeEventListener(type, listener, obj);
   };
 
   requestOpenExtension = (extensionId, params) => {
-    this.appWin.requestOpenExtension(extensionId, params);
+    window.__adobe_cep__.requestOpenExtension(extensionId, params);
   };
 
   getExtensions = extensionIds => {
-    let extensionsStr = this.appWin.getExtensions(JSON.stringify(extensionIds));
+    let extensionsStr = window.__adobe_cep__.getExtensions(JSON.stringify(extensionIds));
     return JSON.parse(extensionsStr);
   };
 
   getNetworkPreferences = () => {
-    let result = this.appWin.getNetworkPreferences();
+    let result = window.__adobe_cep__.getNetworkPreferences();
     return JSON.parse(result);
   };
 
   initResourceBundle = () => {
-    let resourceBundle = JSON.parse(this.appWin.initResourceBundle());
+    let resourceBundle = JSON.parse(window.__adobe_cep__.initResourceBundle());
     let resElms = document.querySelectorAll('[data-locale]');
 
     for (let n = 0; n < resElms.length; n++) {
@@ -490,7 +482,7 @@ export class CSInterface {
     return resourceBundle;
   };
 
-  dumpInstallationInfo = () => this.appWin.dumpInstallationInfo();
+  dumpInstallationInfo = () => window.__adobe_cep__.dumpInstallationInfo();
 
   getOSInformation = () => {
     let userAgent = navigator.userAgent;
@@ -539,31 +531,31 @@ export class CSInterface {
     return 'Unknown Operation System';
   };
 
-  openURLInDefaultBrowser = url => this.cep.util.openURLInDefaultBrowser(url);
+  openURLInDefaultBrowser = url => cep.util.openURLInDefaultBrowser(url);
 
-  getExtensionID = () => this.appWin.getExtensionId();
+  getExtensionID = () => window.__adobe_cep__.getExtensionId();
 
-  getScaleFactor = () => this.appWin.getScaleFactor();
+  getScaleFactor = () => window.__adobe_cep__.getScaleFactor();
 
-  setScaleFactorChangedHandler = handler => this.appWin.setScaleFactorChangedHandler(handler);
+  setScaleFactorChangedHandler = handler => window.__adobe_cep__.setScaleFactorChangedHandler(handler);
 
-  getCurrentApiVersion = () => JSON.parse(this.appWin.getCurrentApiVersion());
+  getCurrentApiVersion = () => JSON.parse(window.__adobe_cep__.getCurrentApiVersion());
 
   setPanelFlyoutMenu = menu => {
     if ('string' != typeof menu) {
       return;
     }
 
-    this.appWin.invokeSync('setPanelFlyoutMenu', menu);
+    window.__adobe_cep__.invokeSync('setPanelFlyoutMenu', menu);
   };
 
   updatePanelMenuItem = (menuItemLabel: string, enabled: string, checked: string) => {
-    this.ret = false;
+    ret = false;
     if (this.getHostCapabilities().EXTENDED_PANEL_MENU) {
       let itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked);
-      this.ret = this.appWin.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus));
+      ret = window.__adobe_cep__.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus));
     }
-    return this.ret;
+    return ret;
   };
 
   setContextMenu = function (menu, callback) {
@@ -571,7 +563,7 @@ export class CSInterface {
       return;
     }
 
-    this.appWin.invokeAsync('setContextMenu', menu, callback);
+    window.__adobe_cep__.invokeAsync('setContextMenu', menu, callback);
   };
 
   setContextMenuByJSON = (menu, callback) => {
@@ -579,27 +571,27 @@ export class CSInterface {
       return;
     }
 
-    this.appWin.invokeAsync('setContextMenuByJSON', menu, callback);
+    window.__adobe_cep__.invokeAsync('setContextMenuByJSON', menu, callback);
   };
 
   updateContextMenuItem = (menuItemID: string, enabled: string, checked: string) => {
     let itemStatus = new ContextMenuItemStatus(menuItemID, enabled, checked);
-    this.ret = this.appWin.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus));
+    ret = window.__adobe_cep__.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus));
   };
 
-  isWindowVisible = () => this.appWin.invokeSync('isWindowVisible', '');
+  isWindowVisible = () => window.__adobe_cep__.invokeSync('isWindowVisible', '');
 
   resizeContent = (width, height) => {
-    this.appWin.resizeContent(width, height);
+    window.__adobe_cep__.resizeContent(width, height);
   };
 
-  registerInvalidCertificateCallback = (callback) => this.appWin.registerInvalidCertificateCallback(callback);
+  registerInvalidCertificateCallback = (callback) => window.__adobe_cep__.registerInvalidCertificateCallback(callback);
 
-  registerKeyEventsInterest = keyEventsInterest => this.appWin.registerKeyEventsInterest(keyEventsInterest);
+  registerKeyEventsInterest = keyEventsInterest => window.__adobe_cep__.registerKeyEventsInterest(keyEventsInterest);
 
   setWindowTitle = title => {
-    this.appWin.invokeSync('setWindowTitle', title);
+    window.__adobe_cep__.invokeSync('setWindowTitle', title);
   };
 
-  getWindowTitle = () => this.appWin.invokeSync('getWindowTitle', '');
+  getWindowTitle = () => window.__adobe_cep__.invokeSync('getWindowTitle', '');
 }

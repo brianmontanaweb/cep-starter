@@ -1,7 +1,7 @@
 <ExtensionList>
   <Extension Id="com.cep-starter">
     <HostList>
-      <Host Name="PHXS" Port="8088"/>
+      <Host Name="PHXS" Port="8087"/>
       <Host Name="PHSP" Port="8088"/>
     </HostList>
   </Extension>
