@@ -379,93 +379,98 @@ export class ContextMenuItemStatus {
   }
 }
 
-/*
-export class CSInterface(appWin) {
-  const cep = {};
-  let ret = false;
+export class CSInterface {
+  appWin: any;
+  cep: any;
+  ret: boolean;
+  THEME_COLOR_CHANGED_EVENT: string = 'com.adobe.csxs.events.ThemeColorChanged';
+  hostEnvironment: any;
 
-  this.THEME_COLOR_CHANGED_EVENT = 'com.adobe.csxs.events.ThemeColorChanged';
-  this.prototype.hostEnvironment = appWin ? JSON.parse(appWin.getHostEnvironment()) : null;
+  constructor(
+    appWin: any,
+    cep: any,
+    ret: boolean
+  ) {
+    this.appWin = appWin;
+    this.ret = ret;
+    this.cep = cep;
+    this.hostEnvironment = this.appWin ? JSON.parse(this.appWin.getHostEnvironment()) : null;
+  }
 
-this.prototype.getHostEnvironment = function() {
-    this.hostEnvironment = JSON.parse(appWin.getHostEnvironment());
+
+
+  getHostEnvironment = () => {
+    this.hostEnvironment = JSON.parse(this.appWin.getHostEnvironment());
     return this.hostEnvironment;
   };
-  this.prototype.closeExtension = function () {
-    appWin.closeExtension();
+
+  closeExtension = () => {
+    this.appWin.closeExtension();
   };
-  this.prototype.getSystemPath = function (pathType) {
-    let path = decodeURI(appWin.getSystemPath(pathType));
+
+  getSystemPath = pathType => {
+    let path = decodeURI(this.appWin.getSystemPath(pathType));
     let OSVersion = this.getOSInformation();
     if (OSVersion.indexOf('Windows') >= 0) {
       path = path.replace('file:///', '');
-    }
-    else if (OSVersion.indexOf('Mac') >= 0) {
+    } else if (OSVersion.indexOf('Mac') >= 0) {
       path = path.replace('file://', '');
     }
     return path;
   };
 
-  this.prototype.evalScript = function (script, callback) {
+  evalScript = (script, callback) => {
     if (callback === null || callback === undefined) {
       callback = function (result) {
+
       };
     }
-    appWin.evalScript(script, callback);
+    this.appWin.evalScript(script, callback);
   };
 
-  this.prototype.getApplicationID = function () {
-    let appId = this.hostEnvironment.appId;
-    return appId;
-  };
+  getApplicationID = () => this.hostEnvironment.appId || '';
 
-  this.prototype.getHostCapabilities = function () {
-    let hostCapabilities = JSON.parse(appWin.getHostCapabilities());
-    return hostCapabilities;
-  };
+  getHostCapabilities = () => JSON.parse(this.appWin.getHostCapabilities());
 
-  this.prototype.dispatchEvent = function (event) {
+  dispatchEvent = event => {
     if (typeof event.data == 'object') {
       event.data = JSON.stringify(event.data);
     }
 
-    appWin.dispatchEvent(event);
+    this.appWin.dispatchEvent(event);
   };
 
-  this.prototype.addEventListener = function (type, listener, obj) {
-    appWin.addEventListener(type, listener, obj);
+  addEventListener = (type, listener, obj) => {
+    this.appWin.addEventListener(type, listener, obj);
   };
 
-  this.prototype.removeEventListener = function (type, listener, obj) {
-    appWin.removeEventListener(type, listener, obj);
+  removeEventListener = (type, listener, obj) => {
+    this.appWin.removeEventListener(type, listener, obj);
   };
 
-  this.prototype.requestOpenExtension = function (extensionId, params) {
-    appWin.requestOpenExtension(extensionId, params);
+  requestOpenExtension = (extensionId, params) => {
+    this.appWin.requestOpenExtension(extensionId, params);
   };
 
-  this.prototype.getExtensions = function (extensionIds) {
-    let extensionIdsStr = JSON.stringify(extensionIds);
-    let extensionsStr = appWin.getExtensions(extensionIdsStr);
-
-    let extensions = JSON.parse(extensionsStr);
-    return extensions;
+  getExtensions = extensionIds => {
+    let extensionsStr = this.appWin.getExtensions(JSON.stringify(extensionIds));
+    return JSON.parse(extensionsStr);
   };
 
-  this.prototype.getNetworkPreferences = function () {
-    let result = appWin.getNetworkPreferences();
-    let networkPre = JSON.parse(result);
-
-    return networkPre;
+  getNetworkPreferences = () => {
+    let result = this.appWin.getNetworkPreferences();
+    return JSON.parse(result);
   };
 
-  this.prototype.initResourceBundle = function () {
-    let resourceBundle = JSON.parse(appWin.initResourceBundle());
+  initResourceBundle = () => {
+    let resourceBundle = JSON.parse(this.appWin.initResourceBundle());
     let resElms = document.querySelectorAll('[data-locale]');
+
     for (let n = 0; n < resElms.length; n++) {
       let resEl = resElms[ n ];
 
       let resKey = resEl.getAttribute('data-locale');
+
       if (resKey) {
 
         for (let key in resourceBundle) {
@@ -485,11 +490,9 @@ this.prototype.getHostEnvironment = function() {
     return resourceBundle;
   };
 
-  this.prototype.dumpInstallationInfo = function () {
-    return appWin.dumpInstallationInfo();
-  };
+  dumpInstallationInfo = () => this.appWin.dumpInstallationInfo();
 
-  this.prototype.getOSInformation = function () {
+  getOSInformation = () => {
     let userAgent = navigator.userAgent;
 
     if ((navigator.platform == 'Win32') || (navigator.platform == 'Windows')) {
@@ -498,40 +501,31 @@ this.prototype.getHostEnvironment = function() {
       if (userAgent.indexOf('Windows') > -1) {
         if (userAgent.indexOf('Windows NT 5.0') > -1) {
           winVersion = 'Windows 2000';
-        }
-        else if (userAgent.indexOf('Windows NT 5.1') > -1) {
+        } else if (userAgent.indexOf('Windows NT 5.1') > -1) {
           winVersion = 'Windows XP';
-        }
-        else if (userAgent.indexOf('Windows NT 5.2') > -1) {
+        } else if (userAgent.indexOf('Windows NT 5.2') > -1) {
           winVersion = 'Windows Server 2003';
-        }
-        else if (userAgent.indexOf('Windows NT 6.0') > -1) {
+        } else if (userAgent.indexOf('Windows NT 6.0') > -1) {
           winVersion = 'Windows Vista';
-        }
-        else if (userAgent.indexOf('Windows NT 6.1') > -1) {
+        } else if (userAgent.indexOf('Windows NT 6.1') > -1) {
           winVersion = 'Windows 7';
-        }
-        else if (userAgent.indexOf('Windows NT 6.2') > -1) {
+        } else if (userAgent.indexOf('Windows NT 6.2') > -1) {
           winVersion = 'Windows 8';
-        }
-        else if (userAgent.indexOf('Windows NT 6.3') > -1) {
+        } else if (userAgent.indexOf('Windows NT 6.3') > -1) {
           winVersion = 'Windows 8.1';
-        }
-        else if (userAgent.indexOf('Windows NT 10') > -1) {
+        } else if (userAgent.indexOf('Windows NT 10') > -1) {
           winVersion = 'Windows 10';
         }
 
         if (userAgent.indexOf('WOW64') > -1 || userAgent.indexOf('Win64') > -1) {
           winBit = ' 64-bit';
-        }
-        else {
+        } else {
           winBit = ' 32-bit';
         }
       }
 
       return winVersion + winBit;
-    }
-    else if ((navigator.platform == 'MacIntel') || (navigator.platform == 'Macintosh')) {
+    } else if ((navigator.platform == 'MacIntel') || (navigator.platform == 'Macintosh')) {
       let result = 'Mac OS X';
 
       if (userAgent.indexOf('Mac OS X') > -1) {
@@ -545,87 +539,67 @@ this.prototype.getHostEnvironment = function() {
     return 'Unknown Operation System';
   };
 
-  this.prototype.openURLInDefaultBrowser = function (url) {
-    //return cep.util.openURLInDefaultBrowser(url);
-  };
+  openURLInDefaultBrowser = url => this.cep.util.openURLInDefaultBrowser(url);
 
-  this.prototype.getExtensionID = function () {
-    return appWin.getExtensionId();
-  };
+  getExtensionID = () => this.appWin.getExtensionId();
 
-  this.prototype.getScaleFactor = function () {
-    return appWin.getScaleFactor();
-  };
+  getScaleFactor = () => this.appWin.getScaleFactor();
 
-  this.prototype.setScaleFactorChangedHandler = function (handler) {
-    appWin.setScaleFactorChangedHandler(handler);
-  };
+  setScaleFactorChangedHandler = handler => this.appWin.setScaleFactorChangedHandler(handler);
 
-  this.prototype.getCurrentApiVersion = function () {
-    return JSON.parse(appWin.getCurrentApiVersion());
-  };
+  getCurrentApiVersion = () => JSON.parse(this.appWin.getCurrentApiVersion());
 
-  this.prototype.setPanelFlyoutMenu = function (menu) {
+  setPanelFlyoutMenu = menu => {
     if ('string' != typeof menu) {
       return;
     }
 
-    appWin.invokeSync('setPanelFlyoutMenu', menu);
+    this.appWin.invokeSync('setPanelFlyoutMenu', menu);
   };
 
-  this.prototype.updatePanelMenuItem = function (menuItemLabel, enabled, checked) {
-    ret = false;
+  updatePanelMenuItem = (menuItemLabel: string, enabled: string, checked: string) => {
+    this.ret = false;
     if (this.getHostCapabilities().EXTENDED_PANEL_MENU) {
       let itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked);
-      ret = appWin.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus));
+      this.ret = this.appWin.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus));
     }
-    return ret;
+    return this.ret;
   };
 
-  this.prototype.setContextMenu = function (menu, callback) {
+  setContextMenu = function (menu, callback) {
     if ('string' != typeof menu) {
       return;
     }
 
-    appWin.invokeAsync('setContextMenu', menu, callback);
+    this.appWin.invokeAsync('setContextMenu', menu, callback);
   };
 
-  this.prototype.setContextMenuByJSON = function (menu, callback) {
+  setContextMenuByJSON = (menu, callback) => {
     if ('string' != typeof menu) {
       return;
     }
 
-    appWin.invokeAsync('setContextMenuByJSON', menu, callback);
+    this.appWin.invokeAsync('setContextMenuByJSON', menu, callback);
   };
 
-  this.prototype.updateContextMenuItem = function (menuItemID, enabled, checked) {
-    let itemStatus = new this.ContextMenuItemStatus(menuItemID, enabled, checked);
-    ret = appWin.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus));
+  updateContextMenuItem = (menuItemID: string, enabled: string, checked: string) => {
+    let itemStatus = new ContextMenuItemStatus(menuItemID, enabled, checked);
+    this.ret = this.appWin.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus));
   };
 
-  this.prototype.isWindowVisible = function () {
-    return appWin.invokeSync('isWindowVisible', '');
+  isWindowVisible = () => this.appWin.invokeSync('isWindowVisible', '');
+
+  resizeContent = (width, height) => {
+    this.appWin.resizeContent(width, height);
   };
 
-  this.prototype.resizeContent = function (width, height) {
-    appWin.resizeContent(width, height);
+  registerInvalidCertificateCallback = (callback) => this.appWin.registerInvalidCertificateCallback(callback);
+
+  registerKeyEventsInterest = keyEventsInterest => this.appWin.registerKeyEventsInterest(keyEventsInterest);
+
+  setWindowTitle = title => {
+    this.appWin.invokeSync('setWindowTitle', title);
   };
 
-  this.prototype.registerInvalidCertificateCallback = function (callback) {
-    return appWin.registerInvalidCertificateCallback(callback);
-  };
-
-  this.prototype.registerKeyEventsInterest = function (keyEventsInterest) {
-    return appWin.registerKeyEventsInterest(keyEventsInterest);
-  };
-
-  this.prototype.setWindowTitle = function (title) {
-    appWin.invokeSync('setWindowTitle', title);
-  };
-
-  this.prototype.getWindowTitle = function () {
-    return appWin.invokeSync('getWindowTitle', '');
-  };
-
-};
-*/
+  getWindowTitle = () => this.appWin.invokeSync('getWindowTitle', '');
+}
