@@ -9,7 +9,8 @@
     "extendscript": "extendscriptr --script host/index.js --output host/index.jsx",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "stylelint": "stylelint \"src/**/*.scss\" --syntax scss"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +47,10 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.3.0",
+    "stylelint": "^9.6.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^1.0.0",
+    "stylelint-scss": "^3.3.1",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2"
