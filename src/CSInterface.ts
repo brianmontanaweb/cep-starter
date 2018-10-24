@@ -386,9 +386,14 @@ export class ContextMenuItemStatus {
 export class CSInterface {
   THEME_COLOR_CHANGED_EVENT: string = 'com.adobe.csxs.events.ThemeColorChanged';
   hostEnvironment: any;
+  getMonitorScaleFactor: any;
 
   constructor() {
     this.hostEnvironment = window.__adobe_cep__.getHostEnvironment ? JSON.parse(window.__adobe_cep__.getHostEnvironment()) : null;
+
+    if(navigator.appVersion.toLowerCase().indexOf("windows") >= 0) {
+      this.getMonitorScaleFactor = () => window.__adobe_cep__.getMonitorScaleFactor();
+    }
   }
 
   getHostEnvironment = () => {

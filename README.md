@@ -16,7 +16,7 @@ Clone repo to:
 * Mac: `~/Library/Application Support/Adobe/CEP/extensions`
 * Windows: `C:\Users\<USERNAME>\AppData\Roaming\Adobe\CEP/extensions`
 
-Mac: `defaults write com.adobe.CSXS.8 PlayerDebugMode 1` into terminal
+Mac: `defaults write com.adobe.CSXS.9 PlayerDebugMode 1` into terminal
 
 ### Setup Browser
 1. Install dependencies: `npm i`

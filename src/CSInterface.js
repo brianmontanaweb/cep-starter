@@ -11,7 +11,7 @@
  *
  **************************************************************************************************/
 
-/** CSInterface - v8.0.0 */
+/** CSInterface - v9.2.0 */
 
 /**
  * Stores constants for the window types supported by the CSXS infrastructure.
@@ -410,8 +410,8 @@ function ApiVersion(major, minor, micro)
  * Since 5.2.0
  *
  * @param menuItemLabel  The menu item label.
- * @param enabled  		 True if user wants to enable the menu item.
- * @param checked  		 True if user wants to check the menu item.
+ * @param enabled        True if user wants to enable the menu item.
+ * @param checked        True if user wants to check the menu item.
  *
  * @return MenuItemStatus object.
  */
@@ -429,8 +429,8 @@ function MenuItemStatus(menuItemLabel, enabled, checked)
  * Since 5.2.0
  *
  * @param menuItemID     The menu item id.
- * @param enabled  		 True if user wants to enable the menu item.
- * @param checked  		 True if user wants to check the menu item.
+ * @param enabled        True if user wants to enable the menu item.
+ * @param checked        True if user wants to check the menu item.
  *
  * @return MenuItemStatus object.
  */
@@ -847,6 +847,21 @@ CSInterface.prototype.getScaleFactor = function()
 };
 
 /**
+ * Retrieves the scale factor of Monitor.
+ *
+ * Since 8.5.0
+ *
+ * @return value >= 1.0f
+ * only available for windows machine
+ */
+if(navigator.appVersion.toLowerCase().indexOf("windows") >= 0) {
+  CSInterface.prototype.getMonitorScaleFactor = function()
+  {
+    return window.__adobe_cep__.getMonitorScaleFactor();
+  };
+}
+
+/**
  * Set a handler to detect any changes of scale factor. This only works on Mac.
  *
  * Since 4.2.0
@@ -916,9 +931,9 @@ CSInterface.prototype.setPanelFlyoutMenu = function(menu)
  *
  * Since 5.2.0
  *
- * @param menuItemLabel	The menu item label.
- * @param enabled		True to enable the item, false to disable it (gray it out).
- * @param checked		True to select the item, false to deselect it.
+ * @param menuItemLabel The menu item label.
+ * @param enabled       True to enable the item, false to disable it (gray it out).
+ * @param checked       True to select the item, false to deselect it.
  *
  * @return false when the host application does not support this functionality (HostCapabilities.EXTENDED_PANEL_MENU is false).
  *         Fails silently if menu label is invalid.
@@ -1061,9 +1076,9 @@ CSInterface.prototype.setContextMenuByJSON = function(menu, callback)
  *
  * Since 5.2.0
  *
- * @param menuItemID	The menu item ID.
- * @param enabled		True to enable the item, false to disable it (gray it out).
- * @param checked		True to select the item, false to deselect it.
+ * @param menuItemID    The menu item ID.
+ * @param enabled       True to enable the item, false to disable it (gray it out).
+ * @param checked       True to select the item, false to deselect it.
  */
 CSInterface.prototype.updateContextMenuItem = function(menuItemID, enabled, checked)
 {
