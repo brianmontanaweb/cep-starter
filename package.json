@@ -46,7 +46,7 @@
     "karma-coverage-istanbul-reporter": "^2.0.4",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.3.0",
+    "protractor": "^5.4.1",
     "rxjs-tslint": "^0.1.5",
     "stylelint": "^9.6.0",
     "stylelint-config-standard": "^18.2.0",
