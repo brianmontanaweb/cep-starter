@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:watch": "npm run build -- --watch",
+    "sign": "ZXPSignCmd -selfSignedCert US IL MontanaCo Montana password Cert.p12",
     "extendscript": "extendscriptr --script host/index.js --output host/index.jsx",
     "test": "ng test",
     "lint": "ng lint",

@@ -6,6 +6,7 @@
 /out-tsc
 /client
 /host/index.jsx
+*.p12
 
 # dependencies
 /node_modules

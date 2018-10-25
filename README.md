@@ -10,10 +10,12 @@ This is a basic setup for an Adobe CEP using Angular 6 CLI focused on Photoshop 
 
 ## Starting
 
+Install [ZXPSignCmd](https://github.com/Adobe-CEP/CEP-Resources/blob/master/ZXPSignCMD/4.0.7/osx10/ZXPSignCmd.dmg) to `/user/local/bin` on Mac to sign the extension for distribution
+
 Clone repo to:
 
 * If the directory doesn't exist create it!
-* Mac: `~/Library/Application Support/Adobe/CEP/extensions`
+* Mac: `~/Library/Application Support/Adobe/CEP/extensions` or `/Library/Application Support/Adobe/CEP/extensions`
 * Windows: `C:\Users\<USERNAME>\AppData\Roaming\Adobe\CEP/extensions`
 
 Mac: `defaults write com.adobe.CSXS.9 PlayerDebugMode 1` into terminal
