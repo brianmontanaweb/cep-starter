@@ -1,5 +1,7 @@
 # Adobe CEP Scaffolding
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+
 This is a basic setup for an Adobe CEP using Angular 6 CLI focused on Photoshop but can be converted for others. Filling out the rest as the project expands.
 
 ## Goal

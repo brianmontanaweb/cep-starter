@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import * as CSI from '../CSInterface';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title: any = 'app';
@@ -15,7 +14,7 @@ export class AppComponent {
     this.title = this.csi.hostEnvironment.appName;
   }
 
-  openDoc() {
-    this.csi.evalScript('openDocument()');
+  importFiles(): void {
+    this.csi.evalScript('$._PPP_.importFiles()', _ => alert('should open dialog to import files'));
   }
 }
