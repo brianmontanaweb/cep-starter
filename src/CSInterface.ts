@@ -384,14 +384,14 @@ export class ContextMenuItemStatus {
 }
 
 export class CSInterface {
-  THEME_COLOR_CHANGED_EVENT: string = 'com.adobe.csxs.events.ThemeColorChanged';
+  THEME_COLOR_CHANGED_EVENT = 'com.adobe.csxs.events.ThemeColorChanged';
   hostEnvironment: any;
   getMonitorScaleFactor: any;
 
   constructor() {
     this.hostEnvironment = window.__adobe_cep__.getHostEnvironment ? JSON.parse(window.__adobe_cep__.getHostEnvironment()) : null;
 
-    if(navigator.appVersion.toLowerCase().indexOf("windows") >= 0) {
+    if (navigator.appVersion.toLowerCase().indexOf('windows') >= 0) {
       this.getMonitorScaleFactor = () => window.__adobe_cep__.getMonitorScaleFactor();
     }
   }
@@ -399,31 +399,31 @@ export class CSInterface {
   getHostEnvironment = () => {
     this.hostEnvironment = JSON.parse(window.__adobe_cep__.getHostEnvironment());
     return this.hostEnvironment;
-  };
+  }
 
   closeExtension = () => {
     window.__adobe_cep__.closeExtension();
-  };
+  }
 
   getSystemPath = pathType => {
     let path = decodeURI(window.__adobe_cep__.getSystemPath(pathType));
-    let OSVersion = this.getOSInformation();
+    const OSVersion = this.getOSInformation();
     if (OSVersion.indexOf('Windows') >= 0) {
       path = path.replace('file:///', '');
     } else if (OSVersion.indexOf('Mac') >= 0) {
       path = path.replace('file://', '');
     }
     return path;
-  };
+  }
 
   evalScript = (script, callback) => {
     if (callback === null || callback === undefined) {
-      callback = function (result) {
+      callback = function(result) {
 
       };
     }
     window.__adobe_cep__.evalScript(script, callback);
-  };
+  }
 
   getApplicationID = () => this.hostEnvironment.appId || '';
 
@@ -435,49 +435,49 @@ export class CSInterface {
     }
 
     window.__adobe_cep__.dispatchEvent(event);
-  };
+  }
 
   addEventListener = (type, listener, obj) => {
     window.__adobe_cep__.addEventListener(type, listener, obj);
-  };
+  }
 
   removeEventListener = (type, listener, obj) => {
     window.__adobe_cep__.removeEventListener(type, listener, obj);
-  };
+  }
 
   requestOpenExtension = (extensionId, params) => {
     window.__adobe_cep__.requestOpenExtension(extensionId, params);
-  };
+  }
 
   getExtensions = extensionIds => {
-    let extensionsStr = window.__adobe_cep__.getExtensions(JSON.stringify(extensionIds));
+    const extensionsStr = window.__adobe_cep__.getExtensions(JSON.stringify(extensionIds));
     return JSON.parse(extensionsStr);
-  };
+  }
 
   getNetworkPreferences = () => {
-    let result = window.__adobe_cep__.getNetworkPreferences();
+    const result = window.__adobe_cep__.getNetworkPreferences();
     return JSON.parse(result);
-  };
+  }
 
   initResourceBundle = () => {
-    let resourceBundle = JSON.parse(window.__adobe_cep__.initResourceBundle());
-    let resElms = document.querySelectorAll('[data-locale]');
+    const resourceBundle = JSON.parse(window.__adobe_cep__.initResourceBundle());
+    const resElms = document.querySelectorAll('[data-locale]');
 
     for (let n = 0; n < resElms.length; n++) {
-      let resEl = resElms[ n ];
+      const resEl = resElms[ n ];
 
-      let resKey = resEl.getAttribute('data-locale');
+      const resKey = resEl.getAttribute('data-locale');
 
       if (resKey) {
 
-        for (let key in resourceBundle) {
+        for (const key in resourceBundle) {
           if (key.indexOf(resKey) === 0) {
-            let resValue = resourceBundle[ key ];
+            const resValue = resourceBundle[ key ];
             if (key.length == resKey.length) {
               resEl.innerHTML = resValue;
             }
             else if ('.' == key.charAt(resKey.length)) {
-              let attrKey = key.substring(resKey.length + 1);
+              const attrKey = key.substring(resKey.length + 1);
               resEl[ attrKey ] = resValue;
             }
           }
@@ -485,12 +485,12 @@ export class CSInterface {
       }
     }
     return resourceBundle;
-  };
+  }
 
   dumpInstallationInfo = () => window.__adobe_cep__.dumpInstallationInfo();
 
   getOSInformation = () => {
-    let userAgent = navigator.userAgent;
+    const userAgent = navigator.userAgent;
 
     if ((navigator.platform == 'Win32') || (navigator.platform == 'Windows')) {
       let winVersion = 'Windows';
@@ -534,7 +534,7 @@ export class CSInterface {
     }
 
     return 'Unknown Operation System';
-  };
+  }
 
   openURLInDefaultBrowser = url => cep.util.openURLInDefaultBrowser(url);
 
@@ -552,18 +552,18 @@ export class CSInterface {
     }
 
     window.__adobe_cep__.invokeSync('setPanelFlyoutMenu', menu);
-  };
+  }
 
   updatePanelMenuItem = (menuItemLabel: string, enabled: string, checked: string) => {
     ret = false;
     if (this.getHostCapabilities().EXTENDED_PANEL_MENU) {
-      let itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked);
+      const itemStatus = new MenuItemStatus(menuItemLabel, enabled, checked);
       ret = window.__adobe_cep__.invokeSync('updatePanelMenuItem', JSON.stringify(itemStatus));
     }
     return ret;
-  };
+  }
 
-  setContextMenu = function (menu, callback) {
+  setContextMenu = function(menu, callback) {
     if ('string' != typeof menu) {
       return;
     }
@@ -577,18 +577,18 @@ export class CSInterface {
     }
 
     window.__adobe_cep__.invokeAsync('setContextMenuByJSON', menu, callback);
-  };
+  }
 
   updateContextMenuItem = (menuItemID: string, enabled: string, checked: string) => {
-    let itemStatus = new ContextMenuItemStatus(menuItemID, enabled, checked);
+    const itemStatus = new ContextMenuItemStatus(menuItemID, enabled, checked);
     ret = window.__adobe_cep__.invokeSync('updateContextMenuItem', JSON.stringify(itemStatus));
-  };
+  }
 
   isWindowVisible = () => window.__adobe_cep__.invokeSync('isWindowVisible', '');
 
   resizeContent = (width, height) => {
     window.__adobe_cep__.resizeContent(width, height);
-  };
+  }
 
   registerInvalidCertificateCallback = (callback) => window.__adobe_cep__.registerInvalidCertificateCallback(callback);
 
@@ -596,7 +596,7 @@ export class CSInterface {
 
   setWindowTitle = title => {
     window.__adobe_cep__.invokeSync('setWindowTitle', title);
-  };
+  }
 
   getWindowTitle = () => window.__adobe_cep__.invokeSync('getWindowTitle', '');
 }
